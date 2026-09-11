@@ -30,6 +30,11 @@ app.get("/metrics", async (req, res) => {
   res.set("Content-Type", register.contentType);
   res.end(await register.metrics());
 });
+app.get("/", (req, res) => res.json({
+  name: "prodpilot-demo",
+  description: "A small Express API audited, fixed and deployed end to end by ProdPilot.",
+  endpoints: { health: "/health", api: "/api/v1", metrics: "/metrics" },
+}));
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 app.get("/api/v1", (req, res) => res.json({ name: "prodpilot-demo", version: "1.0.0" }));
 
