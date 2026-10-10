@@ -36,7 +36,7 @@ app.get("/", (req, res) => res.json({
   endpoints: { health: "/health", api: "/api/v1", metrics: "/metrics" },
 }));
 app.get("/health", (req, res) => res.json({ status: "ok" }));
-app.get("/api/v1", () => { throw new Error("deliberately broken for the 1.1 rollback test"); });
+app.get("/api/v1", (req, res) => res.json({ name: "prodpilot-demo", version: "1.0.0" }));
 
 app.use((req, res) => res.status(404).json({ error: "not found" }));
 
